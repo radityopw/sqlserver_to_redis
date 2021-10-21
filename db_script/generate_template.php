@@ -34,7 +34,7 @@ GO
 CREATE TABLE ".$schema.".".$table."
 	(
 	id uniqueidentifier NOT NULL,
-	parent_id bigint NOT NULL,
+	parent_id varchar(255) NOT NULL,
 	status varchar(10) NOT NULL,
 	waktu datetime NOT NULL,
 	in_redis tinyint NOT NULL
