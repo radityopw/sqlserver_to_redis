@@ -35,15 +35,20 @@ foreach ($dbh->query($sql) as $row) {
     }else{
         $sql = "SELECT * FROM ".$schema.".".$table." WHERE id = '".$row['parent_id']."'";
     
-        $row2 = $dbh->query($sql)->fetch();
-     
-        $row_json = json_encode($row2);
+        $stmt = $dbh->query($sql,PDO::FETCH_ASSOC);
         
-        $redis->set($prefix.$row2[$pk],$row_json);
+        if($stmt){
+        
+            $row2 = $stmt->fetch();
+         
+            $row_json = json_encode($row2);
+            
+            $redis->set($prefix.$row2[$pk],$row_json);
+            
+        }else{
+            echo "TERDETEKSI KEMUNGKINAN DIHAPUS, SKIP".PHP_EOL;
+        }
     }
-    
-    
-    
     $sql = "UPDATE ".$schema_cdc.".".$table." SET in_redis = 1 WHERE id='".$row['id']."'";
     $dbh->exec($sql);
     

@@ -22,7 +22,7 @@ echo "deleting redis keys with prefix ".$prefix.PHP_EOL;
 $redis = new Redis();
 $redis->connect($redis_server,$redis_port);
 
-$all_keys = $redis->keys($prefix);
+$all_keys = $redis->keys($prefix."*");
 
 $redis->del($all_keys);
 

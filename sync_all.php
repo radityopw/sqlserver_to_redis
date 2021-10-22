@@ -23,8 +23,8 @@ $redis = new Redis();
 $redis->connect($redis_server,$redis_port);
 $dbh = new PDO($dsn, $user, $password);
 
-$sql = "SELECT * FROM ".$schema.".".$table;
-foreach ($dbh->query($sql) as $row) {
+$sql = "SELECT * FROM ".$schema.".".$table." ".$where_condition;
+foreach ($dbh->query($sql,PDO::FETCH_ASSOC) as $row) {
     
     echo "processing ".$pk." = ".$row[$pk].PHP_EOL;
  
