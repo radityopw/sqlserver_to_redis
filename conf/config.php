@@ -7,6 +7,7 @@ $schema_cdc = "cdc";
 $pk = "id";
 $redis_prefix = $table;
 $where_condition = "WHERE 1=1";
+$select_cols = "*";
 
 // koneksi ke database 
 $dsn = 'sqlsrv:Database=sych_redis;Server=127.0.0.1';

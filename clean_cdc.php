@@ -1,7 +1,7 @@
 <?php 
 
 if(count($argv) != 3){
-    echo "usage : php -f clear_redis.php <location config> <days_to_keep>".PHP_EOL;
+    echo "usage : php -f clean_cdc.php <location config> <days_to_keep>".PHP_EOL;
     exit;
 }
 

@@ -1,7 +1,7 @@
 <?php 
 
 if(count($argv) != 2){
-    echo "usage : php -f clear_redis.php <location config>".PHP_EOL;
+    echo "usage : php -f sync_all.php <location config>".PHP_EOL;
     exit;
 }
 
@@ -23,7 +23,7 @@ $redis = new Redis();
 $redis->connect($redis_server,$redis_port);
 $dbh = new PDO($dsn, $user, $password);
 
-$sql = "SELECT * FROM ".$schema.".".$table." ".$where_condition;
+$sql = "SELECT ".$select_cols." FROM ".$schema.".".$table." ".$where_condition;
 foreach ($dbh->query($sql,PDO::FETCH_ASSOC) as $row) {
     
     echo "processing ".$pk." = ".$row[$pk].PHP_EOL;
